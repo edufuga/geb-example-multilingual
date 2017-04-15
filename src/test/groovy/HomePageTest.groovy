@@ -22,7 +22,7 @@ class HomePageTest extends GebReportingSpec {
 		/**
 		 * Same as "[page instance].setSearch(word)".
 		 * This is the result of (a) Geb+Spock delegating to
-		 * the Browser class and the Browser delegatin to
+		 * the Browser class and the Browser delegating to
 		 * the Page class and (b) Groovy setter and getter
 		 * property calls.
 		 */
