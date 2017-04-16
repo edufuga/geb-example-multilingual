@@ -95,6 +95,7 @@ class HomePage extends Page {
 		println "The URL of the Page is $url."
 		println "The current home localizer is $messages"
 		assert dictionary
+		mainTitle == messages.getMainTitle()
 	}
 
 	/**

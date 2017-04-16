@@ -13,4 +13,11 @@ interface HomeLocalizer {
 	 * @return "action" String
 	 */
 	String getActionName()
+
+	/**
+	 * Main text of the dictionary header.
+	 * 
+	 * @return Main title.
+	 */
+	String getMainTitle()
 }

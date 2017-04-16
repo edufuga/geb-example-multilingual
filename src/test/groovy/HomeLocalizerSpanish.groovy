@@ -11,4 +11,9 @@ class HomeLocalizerSpanish implements HomeLocalizer {
 		"/traducción"
 	}
 
+	@Override
+	public String getMainTitle() {
+		"Diccionario en línea PONS"
+	}
+
 }

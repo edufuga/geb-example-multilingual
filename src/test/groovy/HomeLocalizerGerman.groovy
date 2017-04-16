@@ -10,4 +10,9 @@ class HomeLocalizerGerman implements HomeLocalizer {
 	public String getActionName() {
 		"/übersetzung"
 	}
+
+	@Override
+	public String getMainTitle() {
+		"PONS Online-Wörterbuch"
+	}
 }
