@@ -135,10 +135,26 @@ class HomePage extends Page {
 		dictionary { $("form", action: messages.getActionName()) }
 
 		search { dictionary.$("#q")}	// Query (search) field.
-			
+
 		placeholder { search.attr("placeholder") } // "Suchen" | "Consultar"
 
 		words(required: false, wait: true) { $("#typeahead-menu").$("li")*.text() }
+
+		/**
+		 * Another way to dynamically add content to a Page.
+		 */
+		extraContent?.each { String methodName, Closure closure ->
+			println "Calling method '$methodName' with Closure parameter."
+			"$methodName"(closure)
+		}
 	}
 
+	/**
+	 * Extra content definitions that are added to the
+	 * <code>content</code> static Closure. 
+	 */
+	Map<String, Closure> extraContent = [
+		"mainTitle": { $("div.search-large-wrapper").$("h1").text() },
+		"subTitle": { $("div.search-large-wrapper").$("h2").text() }
+	]
 }
