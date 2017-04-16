@@ -56,6 +56,20 @@ class HomePage extends Page {
 	HomeLocalizer messages
 
 	/**
+	 * 
+	 * Customizer of HomePage's Content Definitions.
+	 * 
+	 * <p><strong>Attention: </strong>The <code>content</code> block
+	 * is actually a Closure. Content is defined in Geb by calling
+	 * unknown methods with a Closure as a parameter.
+	 * This means that in <code>content = { ... }</code> we can
+	 * write normal Groovy code. For example we could <em>define</em>
+	 * single content definitions based on some boolean condition.
+	 * This is what the <code>HomeContentCustomizer</code> does.</p>
+	 */
+	HomeContentCustomizer customizer
+
+	/**
 	 * Default constructor of HomePage.
 	 * Initializes its localized URL.
 	 */
@@ -65,6 +79,7 @@ class HomePage extends Page {
 		// Attention: No need to write "static url".
 		// It is the same URL (class attribute) of Page.
 		messages = Localization.getHomeLocalizer()
+		customizer = Localization.getHomeContentCustomizer()
 	}
 
 	/**
@@ -93,8 +108,25 @@ class HomePage extends Page {
 	 * content definitions itself are not really attributes nor variables
 	 * but method calls, where the method has a name and a Closure as
 	 * parameter.</p>
+	 * 
 	 */
 	static content = {
+
+		container { $(".container") }
+
+		locale { container.$(".locale") }
+
+		/**
+		 * The newsletter isn't present in every language.
+		 * This is maybe nicer than setting "required"
+		 * as it explicitly defines a content definition
+		 * just when it is supposed to be there.
+		 */
+		if (customizer.hasNewsLetter()) {
+			println "The page should have a newsletter."
+			newsletter { container.$(".shop-newsletter") }
+		}
+
 		/**
 		 * The "action" attribute of the element is language specific.
 		 * This content definition is localized.
@@ -103,6 +135,7 @@ class HomePage extends Page {
 		dictionary { $("form", action: messages.getActionName()) }
 
 		search { dictionary.$("#q")}	// Query (search) field.
+			
 		placeholder { search.attr("placeholder") } // "Suchen" | "Consultar"
 
 		words(required: false, wait: true) { $("#typeahead-menu").$("li")*.text() }

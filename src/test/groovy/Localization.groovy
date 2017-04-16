@@ -59,4 +59,18 @@ class Localization {
 			return new HomeLocalizerSpanish()
 		return null
 	}
+
+	/**
+	 * Useful for customizing the content definitions of HomePage.
+	 *
+	 * @return Content customizer for HomePage.
+	 */
+	static HomeContentCustomizer getHomeContentCustomizer() {
+		println "Obtain a 'HomeContentCustomizer' for language '$language'."
+		if (language == "de")
+			return new HomeContentCustomizerGerman()
+		if (language == "es")
+			return new HomeContentCustomizerSpanish()
+		return null
+	}
 }
