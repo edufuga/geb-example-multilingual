@@ -1,8 +1,8 @@
 /**
- * Useful for customizing the <strong>content defintions</strong>
+ * Useful for customizing the <strong>content definitions</strong>
  * of a Page.
  * 
- * @author Eduard
+ * @author Eduard Fugarolas
  *
  */
 interface HomeContentCustomizer {
