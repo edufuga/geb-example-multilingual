@@ -116,22 +116,18 @@ class HomePage extends Page {
 
 		locale { container.$(".locale") }
 
-		/**
-		 * The newsletter isn't present in every language.
-		 * This is maybe nicer than setting "required"
-		 * as it explicitly defines a content definition
-		 * just when it is supposed to be there.
-		 */
+		// The newsletter isn't present in every language.
+		// This is maybe nicer than setting "required"
+		// as it explicitly defines a content definition
+		// just when it is supposed to be there.
 		if (customizer.hasNewsLetter()) {
 			println "The page should have a newsletter."
 			newsletter { container.$(".shop-newsletter") }
 		}
 
-		/**
-		 * The "action" attribute of the element is language specific.
-		 * This content definition is localized.
-		 * The name "dictionary" is the same, as it is the same element.
-		 */
+		// The "action" attribute of the element is language specific.
+		// This content definition is localized.
+		// The name "dictionary" is the same, as it is the same element.
 		dictionary { $("form", action: messages.getActionName()) }
 
 		search { dictionary.$("#q")}	// Query (search) field.
@@ -140,11 +136,9 @@ class HomePage extends Page {
 
 		words(required: false, wait: true) { $("#typeahead-menu").$("li")*.text() }
 
-		/**
-		 * Another way to dynamically add content to a Page.
-		 */
+		// Another way to dynamically add content to a Page.
 		extraContent?.each { String methodName, Closure closure ->
-			println "Calling method '$methodName' with Closure parameter."
+			println "Calling method '$methodName' with Closure '${closure.toString()}' parameter."
 			"$methodName"(closure)
 		}
 	}
