@@ -12,8 +12,8 @@ repositories {
 ext {
 	drivers = ["firefox", "chrome"]
 
-	geckoDriverVersion = '0.15.0'
-	chromeDriverVersion = '2.24'
+	geckoDriverVersion = '0.19.0'
+	chromeDriverVersion = '2.33'
 }
 
 drivers.each { driver ->
